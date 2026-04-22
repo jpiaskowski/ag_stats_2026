@@ -1,0 +1,68 @@
+---
+format: 
+  revealjs:
+    theme: [default, custom.scss]
+    aspectratio: 16x9
+    slide-number: true
+    css: custom.css
+    embed-resources: true
+editor: source
+execute:
+  echo: false
+  message: false
+  warning: false
+---
+
+```{r}
+"#FDDC5C"
+```
+
+::: {.r-stack background-color="#FDDC5C"}
+
+:::: {.columns}
+
+::: {.column width="30%"}
+<br> 
+![](images/logo.png)
+:::
+
+::: {.column width="70%"}
+<br>
+
+## West by Midwest: Package Maintenance, Transition and Handover 
+
+<br> <br> 
+#### *Julia Piaskowski*
+
+*Director of Statistical Programs, University of Idaho*
+
+#### *Russ Lenth**
+
+*Professor Emeritus of Statistics, University of Iowa* 
+
+<br>
+
+*May 14, 2026* 
+<br> <br> 
+
+:::
+
+::::
+:::
+
+```{r}
+library(emmeans)
+
+warp.lm <- lm(breaks ~ wool * tension, data = warpbreaks)
+warp.emm <- emmeans(warp.lm, ~ tension | wool, at = list(wool = "A"))
+plot(warp.emm, PIs = TRUE, comparisons = TRUE)
+
+
+# pigs.lm <- lm(log(conc + 2) ~ source * factor(percent), data = pigs)
+# pigs.emm <- emmeans(pigs.lm, ~ percent | source, at = list(source = "fish"))
+# plot(pigs.emm, type = "scale", breaks = seq(20, 100, by = 10), 
+#      facetlab = "label_value", comparisons = TRUE)
+
+ggsave("images/logo_start.png", width = 3, height = 2.5)
+```
+
