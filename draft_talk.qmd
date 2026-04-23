@@ -13,17 +13,16 @@ execute:
   warning: false
 ---
 
-```{r}
-"#FDDC5C"
-```
 
-::: {.r-stack background-color="#FDDC5C"}
 
 :::: {.columns}
 
 ::: {.column width="30%"}
 <br> 
-![](images/logo.png)
+![](images/Idaho_Main_horizontal_4c.png)
+
+<br> 
+![](images/Iowa_gold_on_black.png)
 :::
 
 ::: {.column width="70%"}
@@ -50,19 +49,93 @@ execute:
 ::::
 :::
 
+
+::: {.r-stack background-color="#343434"}
+
+## Julia Piaskowski has recently taken over maintenance of 'emmeans' from Russ Lenth. 
+### How is that going? 
+### What challenges have we encountered?
+
+:::
+
+## Emmeans
+
+- for estimating marginal means from a linear modeling object
+- legacy package: first released November 5, 2017     
+- replacing 'lsmeans' (first released August 15, 2012)    
+- methods based on Searle, Speed, and Milliken (1980) Population marginal means in the linear model: An alternative to least squares means, *The American Statistician* **34(4)**, 216-221 [doi:10.1080/00031305.1980.10483031](https://doi.org/10.1080%2F00031305.1980.10483031).
+
+## Daily CRAN Downloads
 ```{r}
-library(emmeans)
+library(ggplot2); 
+library(cranlogs)
 
-warp.lm <- lm(breaks ~ wool * tension, data = warpbreaks)
-warp.emm <- emmeans(warp.lm, ~ tension | wool, at = list(wool = "A"))
-plot(warp.emm, PIs = TRUE, comparisons = TRUE)
+# Get downloads for the last month
+stats <- cran_downloads(packages = "emmeans", from = "2017-11-15", to = Sys.Date()) |> 
+  filter(count < 10000)
 
+ggplot(stats, aes(x = date, y = count)) +
+  geom_line() +
+  geom_smooth(method = "loess", span = 0.1, color = "red", fill = "red3", alpha = 0.6, formula = y~x) + 
+  xlab(NULL) + ylab(NULL) +
+  labs(caption = "Data from 'cranlogs' and checked with 'packageRank'") + 
+  #geom_vline(xintercept = as.Date("2022-09-05"), color = "blue") + # date when there is a big shift
+  theme_minimal(base_size = 15)
 
-# pigs.lm <- lm(log(conc + 2) ~ source * factor(percent), data = pigs)
-# pigs.emm <- emmeans(pigs.lm, ~ percent | source, at = list(source = "fish"))
-# plot(pigs.emm, type = "scale", breaks = seq(20, 100, by = 10), 
-#      facetlab = "label_value", comparisons = TRUE)
-
-ggsave("images/logo_start.png", width = 3, height = 2.5)
 ```
+
+```{r}
+#| eval: false
+#| include: false
+library(packageRank)
+
+stats2 <- cranDownloads(package = "emmeans", from = "2017-11-15", to = Sys.Date())[[2]] |> 
+  filter(count < 10000)
+
+full_join(stats, stats2, by = "date") |>  
+  summarise(corr = cor(count.x, count.y, use = "pairwise.complete.obs")) # these are identical
+```
+
+
+## More Usage/Popularity  Stats
+
+- Downloads: 6,000 daily downloads
+- Reverse dependencies: 207
+- Code Mentions on GitHub: 21,600
+- Citations: ?????
+- GitHub Stars: 414
+- Contributors: 17
+- Issues filed: 532
+
+::: {.custom-footer}
+Source: [ROpenSci's R Universe](https://r-universe.dev/packages)
+:::
+
+## Package Structure
+
+
+## Package Structure
+
+
+## How Did It Start?
+
+
+## How Did Julia Find Her Way?
+
+
+## Challenges: Filed Issues
+
+## Collaboration
+
+![](https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMW0xMG4xeG0xcTZnMnNmMGpwcWExbjE3bnF4Ynhwc3R6dzkxcDlqeSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/cOVnjen3FL4J8sKZEH/giphy.gif)
+
+
+
+
+## Challenges: Breaking Dependencies
+
+## Russ's Turn
+
+(take it away!)
+
 
