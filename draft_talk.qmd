@@ -58,14 +58,170 @@ execute:
 
 :::
 
-## Emmeans
+-----------------------------------------------------------------
+
+::: {.r-stack background-color="#ffcd00"}
+
+## Russ' Perspective
+
+:::
+
+## Emmeans Background
 
 - for estimating marginal means from a linear modeling object
 - legacy package: first released November 5, 2017     
 - replacing 'lsmeans' (first released August 15, 2012)    
 - methods based on Searle, Speed, and Milliken (1980) Population marginal means in the linear model: An alternative to least squares means, *The American Statistician* **34(4)**, 216-221 [doi:10.1080/00031305.1980.10483031](https://doi.org/10.1080%2F00031305.1980.10483031).
 
+## Origins of 'lsmeans'
+
+- Preliminary thoughts about how to obtain LSmeans focused on interpretation of model coefficients
+  - What to do with covariates?
+  - Doesn't help that SAS Type III estimable functions do this wrong (IMHO)
+- Salary equity analysis for administration
+  - Focus on what model *predicts*
+  - Duh! Those are the linear functions of coefficients that I need
+  
+  ## Russ's Turn
+
+(take it away!)
+
+## West by Midwest: Where we are
+
+```{r, fig.width=4.8, fig.align = "center"}
+data(state_boundaries_wgs84, package = "USA.state.boundaries")
+sb = state_boundaries_wgs84
+rm(state_boundaries_wgs84)
+CO = sb[sb[,2] == "CO", "Shape"][[1]][[1]][[1]]
+IA = sb[sb[,2] == "IA", "Shape"][[1]][[1]][[1]]
+ID = sb[sb[,2] == "ID", "Shape"][[1]][[1]][[1]]
+MT = sb[sb[,2] == "MT", "Shape"][[1]][[1]][[1]]
+NE = sb[sb[,2] == "NE", "Shape"][[1]][[1]][[1]]
+NM = sb[sb[,2] == "NM", "Shape"][[1]][[1]][[1]]
+WY = sb[sb[,2] == "WY", "Shape"][[1]][[1]][[1]]
+xr = range(c(ID[,1], IA[,1]))
+yr = range(c(MT[,2], NM[,2]))
+
+plot(ID, type = "n", xlim = xr, ylim = yr, axes = FALSE, xlab = "", ylab = "")
+polygon(ID, col = "indianred")
+polygon(NE, col = "lightyellow")
+polygon(IA, col = "cornflowerblue")
+```
+
+## West by Midwest: Where I've lived
+
+```{r, fig.width=4.8, fig.align = "center"}
+mix_col = function(col1, col2, frac) {
+    x = grDevices::colorRamp(c(col1, col2))(frac) / 255
+    rgb(x[1], x[2], x[3], 1)
+}
+lightcfb = mix_col("cornflowerblue", "white", 0.5)
+plot(ID, type = "n", xlim = xr, ylim = yr, axes = FALSE, xlab = "", ylab = "")
+polygon(ID, col = "indianred")
+polygon(NE, col = "lightyellow")
+polygon(IA, col = "cornflowerblue")
+polygon(MT, col = lightcfb)
+polygon(NM, col = lightcfb)
+polygon(CO, col = lightcfb)
+polygon(WY, col = lightcfb)
+```
+
+## Russ's Computing Background
+
+- Skeletran, Fortran IV
+- Algorithms for noncentral $F$, beta, and $t$
+- Power and sample size
+  - Pascal
+  - Xlisp-stat
+  - Java
+- Other R packages: **[rsm](https://CRAN.R-project.org/package=rsm)**, **[lsmeans](https://CRAN.R-project.org/package=lsmeans)**, **[estimability](https://CRAN.R-project.org/package=estimability)**, **[vigindex](https://github.com/rvlenth/vigindex)**
+
+## Origins of lsmeans -- Teaching
+
+- Experimental design
+- Box-Hunter-Hunter, Montgomery, Oehlert texts depending on level
+- My emphasis more on industrial quality than social science contexts
+- Minitab, later S-Plus, R
+- SAS as needed for unbalanced cases
+- Varying faculty opinions on essentialness of SAS
+- **lsmeans** package not until my last year of teaching (2012--13)
+
+
+
+## Foundations of least-squares means
+
+- Walter R. Harvey, *Least-squares analysis of data with unequal subclass numbers,* technical report for USDA Agricultural Research Station, undated. Reprinted 2018 by Forgotten Books.
+- SAS '72 `PROC HARVEY`; later `LSMEANS` option in some `PROC`s
+- Searle, Speed, and Milliken (1980), *The American Statistician*
+- Closely related but essential: Estimability
+  - Rank-deficiency $\Rightarrow$ some predictions not unique
+  - Now in **estimability** package, wish more people paid attention to this
+
+## Reference grid
+
+- Defined informally in papers, but helps to understand what we are talking about
+- Identify levels of each (fixed) factor in the model
+- Mean of each covariate (by default)
+  - Alternatively, can specify one or more covariate values of interest
+- All combinations of these factor and covariate levels
+- With nested fixed effects, treat each nest as a single factor
+
+## Formulation of least-squares means
+
+- Predictions on a reference grid
+  - or equally-weighted marginal means thereof
+- In absence of covariates, this is essentially unweighted means analysis
+- In presence of covariates, we have covariate-adjusted means or averages thereof
+- If any of the predictions involved are non-estimable, then so are the LSMs
+
+## Differing application perspectives
+
+- LSMs use *equal weighting*
+- Makes sense to experimenters
+- Others who deal with observational data, not so much
+- Alernative weighting: Proportional, Outer, Flat
+- Causal effects: *G* computation (counterfactuals)
+- Other packages or platforms: Stata, **effects**, **marginaleffects**, **margins**
+
+## emmeans (2017--)
+
+- Re-structure of **lsmeans** with improved architecture and class structure, customizability
+- Expanding to generalized linear models, link functions and response transformations
+- Version 2.0.3 has 45 source files (17,500 lines)
+  - 9,700 lines of R code
+  - 7,800 lines of comments or embedded documentation
+- 243 functions (79 public), 16 vignettes
+- 121 reverse depends/imports/suggests/enhances
+
+## Transition experience
+
+- Julia ...
+  - encouraged me to add **pkgdown** site (July '24)
+  - set up GitHub action to update site automatically
+  - started monitoring the Issues page
+  - began answering some issues
+  - major overhaul graphics theme
+  - took over as official maintainer (August '25, version 2.0.0)
+
+## Transitioning = Stress of change + Benefits
+
+- **pkgdown** as mentioned before
+- Different work habits & availability
+- Repo management -- working in branches
+- Coding style (e.g., I like "`=`" rather than "`<-`")
+  - but similar styles with whitespace and indentation
+- Joint responsibility for decisions (e.g., no "stars")
+
+-----------------------------------------------------------------
+
+::: {.r-stack background-color="#FDDC5C"}
+
+## Julia's Perspective
+
+:::
+
 ## Daily CRAN Downloads
+
 ```{r}
 library(ggplot2); 
 library(cranlogs)
@@ -130,12 +286,8 @@ Source: [ROpenSci's R Universe](https://r-universe.dev/packages)
 ![](https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMW0xMG4xeG0xcTZnMnNmMGpwcWExbjE3bnF4Ynhwc3R6dzkxcDlqeSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/cOVnjen3FL4J8sKZEH/giphy.gif)
 
 
-
-
 ## Challenges: Breaking Dependencies
 
-## Russ's Turn
-
-(take it away!)
+## Final Thoughts
 
 
