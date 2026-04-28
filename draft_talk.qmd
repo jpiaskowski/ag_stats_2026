@@ -60,6 +60,15 @@ execute:
 
 -----------------------------------------------------------------
 
+## Emmeans Background
+
+- for estimating marginal means from a linear modeling object
+- legacy package: first released November 5, 2017     
+- replacing 'lsmeans' (first released August 15, 2012)    
+- methods based on Searle, Speed, and Milliken (1980) Population marginal means in the linear model: An alternative to least squares means, *The American Statistician* **34(4)**, 216-221 [doi:10.1080/00031305.1980.10483031](https://doi.org/10.1080%2F00031305.1980.10483031).
+
+
+
 ::: {.r-stack background-color="#ffcd00"}
 
 ## Russ' Perspective
@@ -103,6 +112,8 @@ detach()
 ```
 
 
+<!--  (Probably omit this slide)
+
 ## Russ's Computing Background
 
 - Skeletran, Fortran IV
@@ -113,12 +124,21 @@ detach()
   - Java
 - Other R packages: [**rsm**](https://CRAN.R-project.org/package=rsm), [**lsmeans**](https://CRAN.R-project.org/package=lsmeans), [**estimability**](https://CRAN.R-project.org/package=estimability), [**vigindex**](https://github.com/rvlenth/vigindex)
 
-## Emmeans Background
+-->
 
-- for estimating marginal means from a linear modeling object
-- legacy package: first released November 5, 2017     
-- replacing 'lsmeans' (first released August 15, 2012)    
-- methods based on Searle, Speed, and Milliken (1980) Population marginal means in the linear model: An alternative to least squares means, *The American Statistician* **34(4)**, 216-221 [doi:10.1080/00031305.1980.10483031](https://doi.org/10.1080%2F00031305.1980.10483031).
+
+
+## Teaching and stat software experience
+
+- Experimental design
+- Box-Hunter-Hunter, Montgomery, Oehlert texts depending on level
+- My emphasis more on industrial quality than social science contexts
+- Minitab, later S-Plus, R
+- SAS as needed for unbalanced cases
+- Varying faculty opinions on essentialness of SAS
+- **lsmeans** package not until my last year of teaching (2012--13)
+
+
 
 ## Origins of 'lsmeans'
 
@@ -129,16 +149,6 @@ detach()
   - Focus on what model *predicts*
   - Duh! Those are the linear functions of coefficients that I need
   
-
-## Origins of lsmeans -- Teaching
-
-- Experimental design
-- Box-Hunter-Hunter, Montgomery, Oehlert texts depending on level
-- My emphasis more on industrial quality than social science contexts
-- Minitab, later S-Plus, R
-- SAS as needed for unbalanced cases
-- Varying faculty opinions on essentialness of SAS
-- **lsmeans** package not until my last year of teaching (2012--13)
 
 
 
@@ -186,6 +196,12 @@ detach()
   - 7,800 lines of comments or embedded documentation
 - 243 functions (79 public), 16 vignettes
 - 121 reverse depends/imports/suggests/enhances
+
+
+## Getting into R package development
+
+<!-- One or more slides on this topic -->
+
 
 ## Transition experience
 
@@ -296,12 +312,12 @@ emmeans(fiber.add, "machine") |> contrast("consec") |> test(joint = TRUE)
 
 emmeans(fiber.int, "machine") |> contrast("consec") |> test(joint = TRUE)
 
-# What SAS type II ANOVA does
+# What SAS type III ANOVA does
 emmeans(fiber.int, "machine", at = list(diameter = 0)) |> 
     contrast("consec") |> test(joint = TRUE)
 ```
 
-## SAS compares intercepts, not adj. means
+## SAS compares intercepts, not LSmeans
 ```{r, fig.width = 8}
 newdat = expand.grid(diameter = c(0, 24.133), machine = LETTERS[1:3])
 newdat$pred.add = predict(fiber.add, new = newdat)
@@ -310,3 +326,28 @@ emmip(fiber.int, machine ~ diameter, at = list(diameter = c(-1,32))) +
     ggplot2::geom_point(data = newdat, ggplot2::aes(x = diameter, y = pred.int), size = 3)
 ```
 
+## Confirming SAS's output
+
+### With model equivalent to `fiber.int`
+```
+Source                     DF    Type III SS    Mean Square   F Value   Pr > F
+diameter                    1    171.1192314    171.1192314     61.00   <.0001
+machine                     2      2.6641625      1.3320812      0.47   0.6367
+diameter*machine            2      2.7371774      1.3685887      0.49   0.6293
+```
+*(`machine` result matches joint test of intercepts)*
+<br>
+
+### With `diameter` centered:
+```
+Source                     DF    Type III SS    Mean Square   F Value   Pr > F
+ctr_diam                    1    171.1192314    171.1192314     61.00   <.0001
+machine                     2     15.7906794      7.8953397      2.81   0.1124
+ctr_diam*machine            2      2.7371774      1.3685887      0.49   0.6293
+```
+*(`machine` result matches joint test of LSmeans)*
+
+<br>
+
+### Lesson
+In SAS, if you have covariates that interact with anything, center (or standardize) them first
