@@ -163,7 +163,7 @@ detach()
 
 ## Reference grid
 
-- Defined informally in papers, but helps to understand what we are talking about
+- Defined implicitly in papers, but doing so explicitly helps to understand what we are talking about
 - Identify levels of each (fixed) factor in the model
 - Mean of each covariate (by default)
   - Alternatively, can specify one or more covariate values of interest
@@ -199,8 +199,28 @@ detach()
 
 
 ## Getting into R package development
+-   My first package was **rsm**
+-   I had existing code that worked, and used `package.sketeton()` function 
+    (still available) to bundle it up
+    -   But this required writing separate `Rd` files, etc.
+-   Now the way to go is to use RStudio (or Positron) -- free download --
+    and create a new project
+-   Use **roxygen2** package to incorporate documentation, imports, etc.
+-   Wickham, H and Bryan, J (2023) *R Packages* (2d ed), O'Reilly Media, Inc.
 
-<!-- One or more slides on this topic -->
+## Observations on package development
+-   Writing code is fun
+-   Writing documentation & vignettes is less fun, and time-consuming. But really 
+    important
+-   Your stuff is there for others to see -- and they will look
+
+### My pet peeves with some other people's packages
+-   Cramped,runtogethercode. Use whitespace
+-   Over-abstraction. Use meaningful (but short) variable names
+-   Re-using the same variable or object name in a string of examples
+
+#### Bug reports
+- Same peeves, also unnecessary elaboration
 
 
 ## Transition experience
@@ -333,7 +353,7 @@ Do I need to accomodate this?
 - Considerable patience with git and GitHub is required alongside careful coordination with co-maintainers
 - AI: an agent (semi-autonomous) is an unwise choice at this time while Julia is still learning the code base 
 - AI: can help with understanding code base
-- Newer developers need nuturing and encourgement (or at least no discouragemen) and some easy "wins" early on (programming problems that can )
+- Newer developers need nuturing and encourgement (or at least no discouragement) and some easy "wins" early on (programming problems that can )
 
 ## Final Thoughts: How to Get Involved
 
