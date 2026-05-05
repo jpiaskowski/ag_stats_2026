@@ -233,12 +233,14 @@ detach()
 ## Daily CRAN Downloads
 
 ```{r}
-library(ggplot2); 
+#| message: false
+#| warning: false
+library(ggplot2); library(dplyr)
 library(cranlogs)
 
 # Get downloads for the last month
-stats <- cran_downloads(packages = "emmeans", from = "2017-11-15", to = Sys.Date()) ##|> 
-  ##filter(count < 10000)
+stats <- cran_downloads(packages = "emmeans", from = "2017-11-15", to = Sys.Date()) |> 
+  filter(count < 10000)
 
 ggplot(stats, aes(x = date, y = count)) +
   geom_line() +
@@ -285,11 +287,33 @@ Source: [ROpenSci's R Universe](https://r-universe.dev/packages)
 
 ## How Did It Start?
 
+1. File an issue and assist with implementing it, realize Russ is 77 years old, inquire about package succession
+2. Don't do much for the next year: answer issues, look more into package functionality
+3. Start becoming more involved starting last August with some encouragement from Russ
+
 
 ## How Did Julia Find Her Way?
 
 
+
 ## Challenges: Filed Issues
+
+Some issues are complex:
+
+
+
+What if I break something???
+
+## Challenges: Filed Issues
+
+Some people have big demands:
+
+Do I need to accomodate this? 
+(Answer: sometimes, not always)
+
+## Challenges: Can I Fill Russ' Shoes? 
+
+
 
 ## Collaboration
 
@@ -298,14 +322,30 @@ Source: [ROpenSci's R Universe](https://r-universe.dev/packages)
 
 ## Challenges: Breaking Dependencies
 
-## Final Thoughts
+- Many packages depend on emmeans, so every change has to be weighed with that in mind
+- We have a script to check for that! But be careful, if something is broken downstream, that will be our probelm
 
-# Extra
+
+## Final Thoughts: How to Do Library Handoff {.smaller}
+
+- Most of package maintenance is answering issues
+- Some programming skill is needed, but more to read code than write it
+- Considerable patience with git and GitHub is required alongside careful coordination with co-maintainers
+- AI: an agent (semi-autonomous) is an unwise choice at this time while Julia is still learning the code base 
+- AI: can help with understanding code base
+- Newer developers need nuturing and encourgement (or at least no discouragemen) and some easy "wins" early on (programming problems that can )
+
+## Final Thoughts: How to Get Involved
+
+- There are many opportunities
+
+
 ## Why SAS Type III Anova is wrong
+*(when covariates are involved)* 
 
 ```{r, echo = TRUE, message = FALSE}
 library(emmeans)
-fiber.add = lm(strength ~ diameter + machine, data = fiber)
+fiber.add = lm(strength ~ diameter + machine, data = fiber) # why have this? 
 fiber.int = lm(strength ~ diameter * machine, data = fiber)
 
 emmeans(fiber.add, "machine") |> contrast("consec") |> test(joint = TRUE)
@@ -318,6 +358,7 @@ emmeans(fiber.int, "machine", at = list(diameter = 0)) |>
 ```
 
 ## SAS compares intercepts, not LSmeans
+
 ```{r, fig.width = 8}
 newdat = expand.grid(diameter = c(0, 24.133), machine = LETTERS[1:3])
 newdat$pred.add = predict(fiber.add, new = newdat)
@@ -326,9 +367,9 @@ emmip(fiber.int, machine ~ diameter, at = list(diameter = c(-1,32))) +
     ggplot2::geom_point(data = newdat, ggplot2::aes(x = diameter, y = pred.int), size = 3)
 ```
 
-## Confirming SAS's output
+## Confirming SAS's output {.smaller}
 
-### With model equivalent to `fiber.int`
+#### With model equivalent to `fiber.int`
 ```
 Source                     DF    Type III SS    Mean Square   F Value   Pr > F
 diameter                    1    171.1192314    171.1192314     61.00   <.0001
@@ -338,7 +379,7 @@ diameter*machine            2      2.7371774      1.3685887      0.49   0.6293
 *(`machine` result matches joint test of intercepts)*
 <br>
 
-### With `diameter` centered:
+###$ With `diameter` centered:
 ```
 Source                     DF    Type III SS    Mean Square   F Value   Pr > F
 ctr_diam                    1    171.1192314    171.1192314     61.00   <.0001
@@ -350,4 +391,5 @@ ctr_diam*machine            2      2.7371774      1.3685887      0.49   0.6293
 <br>
 
 ### Lesson
+
 In SAS, if you have covariates that interact with anything, center (or standardize) them first
