@@ -60,6 +60,7 @@ execute:
 
 -----------------------------------------------------------------
 
+
 ## Emmeans Background
 
 - for estimating marginal means from a linear modeling object
@@ -285,16 +286,20 @@ Source: [ROpenSci's R Universe](https://r-universe.dev/packages)
 ## Package Structure
 
 
-## How Did It Start?
+## How Did It Start? (Julia)
 
-1. File an issue and assist with implementing it, realize Russ is 77 years old, inquire about package succession
-2. Don't do much for the next year: answer issues, look more into package functionality
-3. Start becoming more involved starting last August with some encouragement from Russ
+1. I filed an issue in 2024 (to make 'pkgdown' website) and assisted with implementing it, realized Russ was 77 years old, and inquired about package succession
+2. I did not contribute for the next year; she answered issues, and looked more into package functionality
+3. I became more involved starting last August with some encouragement from Russ ("please fix this...")
 
 
 ## How Did Julia Find Her Way?
 
-
+- Step zero: read up on package maintenance (this can be intimidating)
+- Step one: answering issues build confidence to interact with the user base and understand what sort of attention to give each issue
+- Step two: make easy fixes (e.g. replace `aes_` with `aes`) and learn how to test them. Learn how to use '[testhat]()'.
+- Step three: do more complex fixes: I added functionality
+- Step four: collaborate with Russ on more complex thing (we overhauled plot aesthetics)
 
 ## Challenges: Filed Issues
 
@@ -317,8 +322,12 @@ Do I need to accomodate this?
 
 ## Collaboration
 
-![](https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMW0xMG4xeG0xcTZnMnNmMGpwcWExbjE3bnF4Ynhwc3R6dzkxcDlqeSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/cOVnjen3FL4J8sKZEH/giphy.gif)
+![](https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExMXQ2bm02ZWQ1aHh4MXZwYWloOHY5OHIxM3p3aTJ6bG55c3B6OGF3aiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/tj16BKlu9sexbFjDl7/giphy.gif)
+(Russ is #14, I am #2)
 
+## Encouragement
+
+![](https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2lrdzBxamg5aXk0OThzZmRmdjRpdGZrY2VsNmI5MzFseTh5cG91ZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/RtTrKqRYYxq118Vnsd/giphy.gif)
 
 ## Challenges: Breaking Dependencies
 
@@ -337,7 +346,10 @@ Do I need to accomodate this?
 
 ## Final Thoughts: How to Get Involved
 
+- The open source software universe needs you!
 - There are many opportunities
+
+![](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExaWFicjA2dHhuMHg3dmVrNzBtcXV6dzV4bGh4aXo5OGVtcmRhazMwbSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/yDAcc4z3GltlmkJNIu/giphy.gif)
 
 
 ## Why SAS Type III Anova is wrong
