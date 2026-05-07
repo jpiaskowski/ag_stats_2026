@@ -31,11 +31,12 @@ execute:
 ## West by Midwest: Package Maintenance, Transition and Handover 
 
 <br> <br> 
+
 #### *Julia Piaskowski*
 
 *Director of Statistical Programs, University of Idaho*
 
-#### *Russ Lenth**
+#### *Russ Lenth*
 
 *Professor Emeritus of Statistics, University of Iowa* 
 
