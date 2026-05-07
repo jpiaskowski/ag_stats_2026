@@ -280,6 +280,12 @@ full_join(stats, stats2, by = "date") |>
 Source: [ROpenSci's R Universe](https://r-universe.dev/packages)
 :::
 
+## There is Not Much Guidance on Library Handoff
+
+![](images/compass.jpg)
+
+
+
 ## Package Structure
 
 
@@ -292,8 +298,13 @@ Source: [ROpenSci's R Universe](https://r-universe.dev/packages)
 2. I did not contribute for the next year; she answered issues, and looked more into package functionality
 3. I became more involved starting last August with some encouragement from Russ ("please fix this...")
 
+## Can I Fill Russ' Shoes?
 
-## How Did Julia Find Her Way?
+![](images/stj-basketball.jpg)
+
+
+
+## How Did I Find My Way?
 
 - Step zero: read up on package maintenance (this can be intimidating)
 - Step one: answering issues build confidence to interact with the user base and understand what sort of attention to give each issue
@@ -316,8 +327,6 @@ Some people have big demands:
 Do I need to accomodate this? 
 (Answer: sometimes, not always)
 
-## Challenges: Can I Fill Russ' Shoes? 
-
 
 
 ## Collaboration
@@ -333,6 +342,7 @@ Do I need to accomodate this?
 
 - Many packages depend on emmeans, so every change has to be weighed with that in mind
 - We have a script to check for that! But be careful, if something is broken downstream, that will be our probelm
+
 
 
 ## Final Thoughts: How to Do Library Handoff {.smaller}
