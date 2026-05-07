@@ -13,47 +13,53 @@ execute:
   warning: false
 ---
 
+## West by Midwest: Package Maintenance, Transition and Handover 
 
+*May 14, 2026* 
 
 :::: {.columns}
 
-::: {.column width="30%"}
+::: {.column width="35%"}
 <br> 
 ![](images/Idaho_Main_horizontal_4c.png)
 
 <br> 
-![](images/Iowa_gold_on_black.png)
+![](images/Iowa_gold_on_black.png){width=85%}
 :::
 
-::: {.column width="70%"}
-<br>
+::: {.column width="65%"}
 
-## West by Midwest: Package Maintenance, Transition and Handover 
 
-<br> <br> 
-#### *Julia Piaskowski*
+
+
+<br> 
+
+### Julia Piaskowski
 
 *Director of Statistical Programs, University of Idaho*
 
-#### *Russ Lenth**
+<br>
+
+### Russ Lenth
 
 *Professor Emeritus of Statistics, University of Iowa* 
 
-<br>
-
-*May 14, 2026* 
-<br> <br> 
 
 :::
 
 ::::
-:::
 
 
-::: {.r-stack background-color="#343434"}
 
-## Julia Piaskowski has recently taken over maintenance of 'emmeans' from Russ Lenth. 
-### How is that going? 
+::: {.r-stack background-color="#343434" .center}
+
+## Julia Piaskowski has recently taken over maintenance of 'emmeans' from Russ Lenth.
+
+<br> <br>
+
+###  How is that going? 
+
+
 ### What challenges have we encountered?
 
 :::
@@ -70,9 +76,9 @@ execute:
 
 
 
-::: {.r-stack background-color="#ffcd00"}
+::: {.r-stack background-color="#ffcd00" .center}
 
-## Russ' Perspective
+# Russ' Perspective
 
 :::
 
@@ -105,7 +111,7 @@ plot(allstates[1:3], col = allcol[1:3], xlim = rng[c(1,3)], ylim = rng[c(2,4)],
      mar = rep(0.0, 4))
 ```
 
-## West by Midwest: Where we've lived
+## West by Midwest: Where I've lived
 
 ```{r, fig.align = "center", fig.height = 8}
 plot(allstates, col = allcol, mar = rep(0.0, 4))
@@ -200,7 +206,8 @@ detach()
 
 
 ## Getting into R package development
--   My first package was **rsm**
+
+-   My first package was **[rsm]()**
 -   I had existing code that worked, and used `package.sketeton()` function 
     (still available) to bundle it up
     -   But this required writing separate `Rd` files, etc.
@@ -215,12 +222,14 @@ detach()
     important
 -   Your stuff is there for others to see -- and they will look
 
-### My pet peeves with some other people's packages
--   Cramped,runtogethercode. Use whitespace
+## My pet peeves with some other people's packages
+
+-   Cramped, runtogethercode. Use whitespace
 -   Over-abstraction. Use meaningful (but short) variable names
 -   Re-using the same variable or object name in a string of examples
 
 #### Bug reports
+
 - Same peeves, also unnecessary elaboration
 
 
@@ -245,9 +254,9 @@ detach()
 
 -----------------------------------------------------------------
 
-::: {.r-stack background-color="#FDDC5C"}
+::: {.r-stack background-color="#FDDC5C" .center}
 
-## Julia's Perspective
+# Julia's Perspective
 
 :::
 
@@ -351,8 +360,19 @@ Do I need to accomodate this?
 
 ## Collaboration
 
-![](https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExMXQ2bm02ZWQ1aHh4MXZwYWloOHY5OHIxM3p3aTJ6bG55c3B6OGF3aiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/tj16BKlu9sexbFjDl7/giphy.gif)
-(Russ is #14, I am #2)
+:::: {.columns}
+
+::: {.column width="50%"}
+
+![*Russ is #14, I am #2*](https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExMXQ2bm02ZWQ1aHh4MXZwYWloOHY5OHIxM3p3aTJ6bG55c3B6OGF3aiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/tj16BKlu9sexbFjDl7/giphy.gif)
+:::
+
+::: {.column width="50%"}
+
+
+:::
+
+::::
 
 ## Encouragement
 
@@ -376,11 +396,21 @@ Do I need to accomodate this?
 
 ## Final Thoughts: How to Get Involved
 
+
+:::: {.columns}
+
+::: {.column width="60%"}
 - The open source software universe needs you!
 - There are many opportunities
 
-![](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExaWFicjA2dHhuMHg3dmVrNzBtcXV6dzV4bGh4aXo5OGVtcmRhazMwbSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/yDAcc4z3GltlmkJNIu/giphy.gif)
+:::
 
+::: {.column width="40%"}
+
+![](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExaWFicjA2dHhuMHg3dmVrNzBtcXV6dzV4bGh4aXo5OGVtcmRhazMwbSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/yDAcc4z3GltlmkJNIu/giphy.gif)
+:::
+
+::::
 
 ## Why SAS Type III Anova is wrong
 *(when covariates are involved)* 
@@ -432,6 +462,4 @@ ctr_diam*machine            2      2.7371774      1.3685887      0.49   0.6293
 
 <br>
 
-### Lesson
-
-In SAS, if you have covariates that interact with anything, center (or standardize) them first
+**Lesson**: In SAS, if you have covariates that interact with anything, center (or standardize) them first
