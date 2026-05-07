@@ -15,6 +15,10 @@ execute:
 
 ## West by Midwest: Package Maintenance, Transition and Handover 
 
+
+*May 14, 2026* 
+
+
 :::: {.columns}
 
 ::: {.column width="35%"}
@@ -22,11 +26,10 @@ execute:
 ![](images/Idaho_Main_horizontal_4c.png)
 
 <br> 
-![](images/Iowa_gold_on_black.png)
+![](images/Iowa_gold_on_black.png){width=85%}
 :::
 
 ::: {.column width="65%"}
-
 
 
 
@@ -43,8 +46,6 @@ execute:
 *Professor Emeritus of Statistics, University of Iowa* 
 
 <br>
-
-*May 14, 2026* 
 
 
 :::
