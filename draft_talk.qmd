@@ -17,8 +17,6 @@ execute:
 
 *May 14, 2026* 
 
-*May 14, 2026* 
-
 :::: {.columns}
 
 ::: {.column width="35%"}
@@ -31,6 +29,8 @@ execute:
 
 
 ::: {.column width="65%"}
+
+<br>
 
 ### Julia Piaskowski
 
@@ -108,7 +108,7 @@ plot(allstates[1:3], col = allcol[1:3], xlim = rng[c(1,3)], ylim = rng[c(2,4)],
      mar = rep(0.0, 4))
 ```
 
-## West by Midwest: Where I've lived
+## West by Midwest: Where we've lived
 
 ```{r, fig.align = "center", fig.height = 8}
 plot(allstates, col = allcol, mar = rep(0.0, 4))
@@ -142,8 +142,6 @@ detach()
 - Varying faculty opinions on essentialness of SAS
 - **lsmeans** package not until my last year of teaching (2012--13)
 
-
-
 ## Origins of 'lsmeans'
 
 - Preliminary thoughts about how to obtain LSmeans focused on interpretation of model coefficients
@@ -152,9 +150,8 @@ detach()
 - Salary equity analysis for administration
   - Focus on what model *predicts*
   - Duh! Those are the linear functions of coefficients that I need
-  
 
-
+<!--
 
 ## Foundations of least-squares means
 
@@ -164,6 +161,7 @@ detach()
 - Closely related but essential: Estimability
   - Rank-deficiency $\Rightarrow$ some predictions not unique
   - Now in **estimability** package, wish more people paid attention to this
+
 
 ## Reference grid
 
@@ -181,6 +179,8 @@ detach()
 - In absence of covariates, this is essentially unweighted means analysis
 - In presence of covariates, we have covariate-adjusted means or averages thereof
 - If any of the predictions involved are non-estimable, then so are the LSMs
+
+-->
 
 ## Differing application perspectives
 
@@ -308,14 +308,13 @@ Source: [ROpenSci's R Universe](https://r-universe.dev/packages)
 
 ## There is Not Much Guidance on Library Handoff
 
-![](images/compass.jpg)
-
-
+![](images/compass.jpg) 
 
 ## Package Structure
-
-
-## Package Structure
+```{r}
+#| echo: false
+library(functiondepends)
+```
 
 
 ## How Did It Start? (Julia)
@@ -324,36 +323,38 @@ Source: [ROpenSci's R Universe](https://r-universe.dev/packages)
 2. I did not contribute for the next year; she answered issues, and looked more into package functionality
 3. I became more involved starting last August with some encouragement from Russ ("please fix this...")
 
-## Can I Fill Russ' Shoes?
-
-![](images/stj-basketball.jpg)
-
-
 
 ## How Did I Find My Way?
 
 - Step zero: read up on package maintenance (this can be intimidating)
 - Step one: answering issues build confidence to interact with the user base and understand what sort of attention to give each issue
-- Step two: make easy fixes (e.g. replace `aes_` with `aes`) and learn how to test them. Learn how to use '[testhat]()'.
+- Step two: make easy fixes (e.g. replace `aes_` with `aes`) and learn how to test them. Learn how to use '[***testhat***](https://testthat.r-lib.org/)'.
 - Step three: do more complex fixes: I added functionality
 - Step four: collaborate with Russ on more complex thing (we overhauled plot aesthetics)
 
-## Challenges: Filed Issues
 
-Some issues are complex:
+## Challenges: Filed Issues {.smaller}
 
+Some requests:
+  - Can you enable users to adjust the number of significant digits when reporting p-values?
+  - Can you make a cheat sheet?
+  - Can you add anova for Bayesian models?
+  - Can you enable credible intervals for Bayesian models? 
+  - Can you fix this bug where the back transformation is wrong?
+  - Can emmeans support {this package}? 
+  - Can you alter your internal function structure so it returns answers identical to my manual calculations?
+  - I keep getting this ggplot error; thought you might want to know!
+  - How should I report my results from emmeans?
 
-
-What if I break something???
-
-## Challenges: Filed Issues
-
-Some people have big demands:
-
-Do I need to accomodate this? 
+Do I need to accomodate all of these? 
 (Answer: sometimes, not always)
 
+## Challenges: Breaking Dependencies
 
+- Some issues are complex. The problem might be straightforward to describe, but what it is causing it is not easy to fix. 
+- Fixing one issue may introduce new problems in the package. 
+- Many packages depend on emmeans, so every change has to be weighed with that in mind. What if I break something?
+- We have a script to check for breaking dependencies But be careful, if something is broken downstream, that will be our problem
 
 ## Collaboration
 
@@ -366,6 +367,10 @@ Do I need to accomodate this?
 
 ::: {.column width="50%"}
 
+- We are collaborating two levels: package maintenance and everyday git issues
+- Provide transition tools: guides to package structure, how to prepare for CRAN
+- Clarify expectations: who is addressing what issue and how? 
+- Need clear two-way communication
 
 :::
 
@@ -373,13 +378,43 @@ Do I need to accomodate this?
 
 ## Encouragement
 
+:::: {.columns}
+
+::: {.column width="50%"}
+
 ![](https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2lrdzBxamg5aXk0OThzZmRmdjRpdGZrY2VsNmI5MzFseTh5cG91ZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/RtTrKqRYYxq118Vnsd/giphy.gif)
+:::
 
-## Challenges: Breaking Dependencies
+::: {.column width="50%"}
 
-- Many packages depend on emmeans, so every change has to be weighed with that in mind
-- We have a script to check for that! But be careful, if something is broken downstream, that will be our probelm
+- Pave the way to easy "wins" 
+- Patience, kindness, and encouragement will go a long ways
 
+:::
+
+::::
+
+## Can I Fill Russ' Shoes?
+
+:::: {.columns}
+
+::: {.column width="60%"}
+
+![](images/stj-basketball.jpg)
+:::
+
+::: {.column width="40%"}
+
+- I am learning the codebase. 
+- Most of the time, I will not be as timely in my response to filed issues
+- I have to be timely responding to CRAN requests
+- I do want to make a few changes: getting R to remove significant stars as the default, and expand the number of units tests. 
+- Refactoring the code is a dream, but at this point, I don't dare. 
+
+
+:::
+
+::::
 
 
 ## Final Thoughts: How to Do Library Handoff {.smaller}
@@ -448,7 +483,7 @@ diameter*machine            2      2.7371774      1.3685887      0.49   0.6293
 *(`machine` result matches joint test of intercepts)*
 <br>
 
-###$ With `diameter` centered:
+#### With `diameter` centered:
 ```
 Source                     DF    Type III SS    Mean Square   F Value   Pr > F
 ctr_diam                    1    171.1192314    171.1192314     61.00   <.0001
