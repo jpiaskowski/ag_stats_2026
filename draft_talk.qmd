@@ -116,7 +116,6 @@ detach()
 ```
 
 
-<!--  (Probably omit this slide)
 
 ## Russ's Computing Background
 
@@ -128,9 +127,9 @@ detach()
   - Java
 - Other R packages: [**rsm**](https://CRAN.R-project.org/package=rsm), [**lsmeans**](https://CRAN.R-project.org/package=lsmeans), [**estimability**](https://CRAN.R-project.org/package=estimability), [**vigindex**](https://github.com/rvlenth/vigindex)
 
--->
 
 
+<!--  (Probably omit this slide)
 
 ## Teaching and stat software experience
 
@@ -141,6 +140,9 @@ detach()
 - SAS as needed for unbalanced cases
 - Varying faculty opinions on essentialness of SAS
 - **lsmeans** package not until my last year of teaching (2012--13)
+
+-->
+
 
 ## Origins of 'lsmeans'
 
@@ -205,7 +207,7 @@ detach()
 ## Getting into R package development
 
 -   My first package was **[rsm]()**
--   I had existing code that worked, and used `package.sketeton()` function 
+-   I had existing code that worked, and used `package.skeleton()` function 
     (still available) to bundle it up
     -   But this required writing separate `Rd` files, etc.
 -   Now the way to go is to use RStudio (or Positron) -- free download --
@@ -221,7 +223,7 @@ detach()
 
 ## My pet peeves with some other people's packages
 
--   Cramped, runtogethercode. Use whitespace
+-   Cramped,runtogethercode. Use whitespace
 -   Over-abstraction. Use meaningful (but short) variable names
 -   Re-using the same variable or object name in a string of examples
 
@@ -310,12 +312,13 @@ Source: [ROpenSci's R Universe](https://r-universe.dev/packages)
 
 ![](images/compass.jpg) 
 
+<!-- Nothing here so commenting it out =================
 ## Package Structure
 ```{r}
 #| echo: false
 library(functiondepends)
 ```
-
+======================================================== -->
 
 ## How Did It Start? (Julia)
 
@@ -398,12 +401,12 @@ Do I need to accomodate all of these?
 
 :::: {.columns}
 
-::: {.column width="60%"}
+::: {.column width="50%"}
 
 ![](images/stj-basketball.jpg)
 :::
 
-::: {.column width="40%"}
+::: {.column width="50%"}
 
 - I am learning the codebase. 
 - Most of the time, I will not be as timely in my response to filed issues
@@ -443,6 +446,11 @@ Do I need to accomodate all of these?
 :::
 
 ::::
+
+
+##
+
+
 
 ## Why SAS Type III Anova is wrong
 *(when covariates are involved)* 
