@@ -22,7 +22,8 @@ ggsave("images/logo_plot.png", width = 4.6, height = 4)
 id = "#FDDC5C"
 ia = "#ffcd00"
 
-dat <- data.frame(x = c(1,1), y = c(1, 2), label = c("Iowa", "Idaho"))
+dat <- data.frame(x = c(1,2), y = c(1, 1), 
+label = c("Iowa \n #ffcd00", "Idaho \n #fddc5c"))
 
 # Plotting
 ggplot(dat, aes(x = x, y = y, fill = label)) +
@@ -37,4 +38,4 @@ ggplot(dat, aes(x = x, y = y, fill = label)) +
   theme(panel.background = element_rect(fill = "transparent", color = NA),
         plot.background = element_rect(fill = "transparent", colour = NA))
 
-ggsave("images/colors.png", width = 3.2, height = 5, bg = "transparent")
+ggsave("images/colors.png", width = 7, height = 4.5, bg = "transparent")
