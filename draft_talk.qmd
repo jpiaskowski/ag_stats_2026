@@ -2,10 +2,10 @@
 format: 
   revealjs:
     theme: [default, custom.scss]
-    aspectratio: 16x9
     slide-number: true
     css: custom.css
     embed-resources: true
+    preview-links: auto
 editor: source
 execute:
   echo: false
@@ -63,9 +63,9 @@ execute:
 
 ## Emmeans Background
 
-- for estimating marginal means from a linear modeling object
-- legacy package: first released November 5, 2017     
-- replacing '[lsmeans](https://CRAN.R-project.org/package=lsmeans)' (first released August 15, 2012)    
+- For estimating marginal means from a linear modeling object
+- Legacy package: first released November 5, 2017     
+- replacing [**lsmeans**](https://CRAN.R-project.org/package=lsmeans)' (first released August 15, 2012)    
 - methods based on Searle, Speed, and Milliken (1980) Population marginal means in the linear model: An alternative to least squares means, *The American Statistician* **34(4)**, 216-221 [doi:10.1080/00031305.1980.10483031](https://doi.org/10.1080%2F00031305.1980.10483031).
 
 
@@ -77,7 +77,7 @@ execute:
 :::
 
 
-## West by Midwest: Where we are
+## West by Midwest: Where We Are
 
 ```{r, fig.align = "center", fig.height = 8}
 library(sf)
@@ -105,7 +105,7 @@ plot(allstates[1:3], col = allcol[1:3], xlim = rng[c(1,3)], ylim = rng[c(2,4)],
      mar = rep(0.0, 4))
 ```
 
-## West by Midwest: Where we've lived
+## West by Midwest: Where We've Lived
 
 ```{r, fig.align = "center", fig.height = 8}
 plot(allstates, col = allcol, mar = rep(0.0, 4))
@@ -181,14 +181,14 @@ detach()
 
 -->
 
-## Differing application perspectives
+## Differing Application Perspectives
 
 - LSMs use *equal weighting*
 - Makes sense to experimenters
 - Others who deal with observational data, not so much
 - Alernative weighting: Proportional, Outer, Flat
 - Causal effects: *G* computation (counterfactuals)
-- Other packages or platforms: Stata, **effects**, **marginaleffects**, **margins**
+- Other packages or platforms: *Stata*, **effects**, **marginaleffects**, **margins**
 
 ## emmeans (2017--)
 
@@ -203,7 +203,7 @@ detach()
 
 ## Getting into R package development
 
--   My first package was rsm
+-   My first R package was **rsm**
 -   I had existing code that worked, and used `package.skeleton()` function 
     (still available) to bundle it up
     -   But this required writing separate `Rd` files, etc.
@@ -213,6 +213,7 @@ detach()
 -   Wickham, H and Bryan, J (2023) *R Packages* (2d ed), O'Reilly Media, Inc.
 
 ## Observations on package development
+
 -   Writing code is fun
 -   Writing documentation & vignettes is less fun, and time-consuming. But really important
 -   Your stuff is there for others to see -- and they will look
@@ -231,7 +232,7 @@ detach()
 ## Transition experience
 
 - Julia ...
-  - encouraged me to add 'pkgdown' site (July '24)
+  - encouraged me to add **pkgdown** site (July '24)
   - set up GitHub action to update site automatically
   - started monitoring the Issues page
   - began answering some issues
@@ -257,19 +258,25 @@ detach()
 
 ## Programming Background
 
+::: {.incremental}
+
 - Originally trained in SAS    
 - Started using R in 2010 when I was unable to access all the predictions from `PROC PLS` (SAS v9.3)   
 - R in those days was hard (no tidyverse, ggplotting, or RStudio), but it had enough functionality and flexibility to make it worth the effort.   
 - Learned C, python, bash shell scripting. Programming is satisfying! 
-- I pay attention to the R ecosystem and read source code frequently.
+- I pay attention to developements in the R ecosystem and read source code frequently.
+:::
 
 ## Programming Philosophy
 
+::: {.incremental}
 - I have an interest in clean code: functions with a clear (single) purpose, good error catching and informative messages. Don't go overboard on functionality (a function is not a multi-tool) 
-- Style: code needs to breath! We aren't bit packing code and sending it to the moon, so use whitespace. Indent code (to indicate function nesting) because it's easier to read and understand 
+- Style: code needs to breathe! We aren't bit packing code and sending it to the moon, so use whitespace. Indent code (to indicate function nesting) because it's easier to read and understand 
 - Use existing libraries for package enhancement (e.g. '[pbkrtest(https://CRAN.R-project.org/package=pbkrtest )]' for Kenward-Rogers degrees of freedom), but try to limit software dependencies that are required for yours to run.
+:::
 
 -----------------------------------------
+
 ![`emmeans::cld()`](images/cld_screenshot.png)
 
 ## Daily CRAN Downloads
@@ -291,7 +298,6 @@ ggplot(stats, aes(x = date, y = count)) +
   labs(caption = "Data from 'cranlogs' and checked with 'packageRank'") + 
   #geom_vline(xintercept = as.Date("2022-09-05"), color = "blue") + # date when there is a big shift
   theme_minimal(base_size = 15)
-
 ```
 
 ```{r}
@@ -321,12 +327,14 @@ full_join(stats, stats2, by = "date") |>
 **Source:** [ROpenSci's R Universe](https://r-universe.dev/packages)
 :::
 
+--------------------------------------------------
 
-## emmeans Function Dependency Graph
+:::: {.columns}
 
+::: {.column width="70%"}
 ```{r}
 #| echo: false
-#| eval: false
+#| eval: true
 # remotes::install_github("DataKnowledge/DependenciesGraphs")
 library(DependenciesGraphs)
 
@@ -334,113 +342,111 @@ suppressPackageStartupMessages(library(emmeans))
 dep <- funDependencies("package:emmeans","emmeans")
 plot(dep)
 ```
+:::
 
-## emmeans Function Dependency Graph
+::: {.column width="30%"}
 
-![](images/function_deps.png)
+<br>
+<br>
+
+### emmeans Function Dependency Graph
+
+:::
+
+::::
+
+## There is Not Much Guidance on Library Handoff 
 
 
-## There is Not Much Guidance on Library Handoff
+![](images/compass.jpg){fig-align="center"}
 
-![](images/compass.jpg) 
 
 ## How Did It Start? (Julia)
 
-1. I filed an issue in 2024 (to make 'pkgdown' website) and assisted with implementing it, realized Russ was 77 years old, and inquired about package succession
-2. I did not contribute much for the next year; I answered issues, and looked more into package functionality
-3. I became more involved starting last August with some encouragement from Russ ("Could you address this...")
+::: {.incremental}
+1. I filed an issue in 2024 (to make 'pkgdown' website) and assisted with implementing it, realized Russ was 77 years old, and inquired about package succession.
+2. I did not contribute much for the next year; I answered issues, and looked more into package functionality.
+3. I became more involved starting last August with some encouragement from Russ ("Could you address this...?")
+:::
 
+## How Did I Find My Way? {.smaller .scrollable}
 
-## How Did I Find My Way? {.smaller}
+::: {.incremental}
+- **Step zero**: read about package maintenance tools (e.g [**devtools**](https://CRAN.R-project.org/package=devtools), [**lintr**]( https://CRAN.R-project.org/package=lintr), [styler](https://CRAN.R-project.org/package=styler), [CRAN guides](https://cran.r-project.org/), [*R Packages*](https://r-pkgs.org/) $2^{nd}$, and [R OpenSci recommendations](https://devguide.ropensci.org/index.html). This can be intimidating.
 
-- **Step zero**: read about package maintenance tools (e.g '[devtools](https://CRAN.R-project.org/package=devtools)', '[lintr]( https://CRAN.R-project.org/package=lintr)', '[styler](https://CRAN.R-project.org/package=styler)', R'[OpenSci recommendations](https://devguide.ropensci.org/index.html') This can be intimidating.
 - **Step one**: answer issues to understand how the userbase interacts with the package, what problems do exist, and learn how to respond to different types of requests.  
-- **Step two**: make an easy package fixes or improvementa (e.g. replace `aes_` with `aes`) and learn how to test them. Learn how to use '[testhat](https://testthat.r-lib.org/)' and write a unit test.
-- **Step three**: do more complex fixes: I added functionality for specifying  the in response to a feature request. 
+
+- **Step two**: make an easy package fixes or improvements (e.g. replace `aes_` with `aes`) and learn how to test them. Learn how to use [**testhat**](https://testthat.r-lib.org/) and write a unit test.
+
+- **Step three**: do more complex fixes: I added functionality for specifying quantile-based credible intervals for Bayesian models in response to a feature request. 
+
 - **Step four**: collaborate with Russ on more complex thing (we overhauled plot aesthetics)
+:::
 
+## Challenges: Filed Issues {.smaller .scrollable}
 
-## Challenges: Filed Issues {.smaller}
+*Some requests:*
 
-Some requests:
-  - Can you enable users to adjust the number of significant digits when reporting p-values?
-  - Can you make a cheat sheet?
-  - Can you add ANOVA for Bayesian models?
-  - Can you enable credible intervals for Bayesian models? 
-  - Can you fix this bug where the back transformation is wrong?
-  - Can emmeans support {this package}? 
-  - Can you alter your internal function structure so it returns answers identical to my manual calculations?
-  - I keep getting this ggplot error; thought you might want to know!
-  - How should I report my results from emmeans?
+- Can you enable users to adjust the number of significant digits when reporting p-values?
+- Can you make a cheat sheet?
+- Can you add ANOVA for Bayesian models?
+- Can you enable credible intervals for Bayesian models? 
+- Can you fix this bug where the back transformation is wrong?
+- Can emmeans support {this package}? 
+- Can you alter your internal function structure so it returns answers identical to my manual calculations?
+- I keep getting this ggplot error; thought you might want to know!
+- How should I report my results from emmeans?
 
 <center> **How do I respond? ** </center>
 
 
 ## Challenges: Breaking Dependencies
+*Internal or external*
 
-- Some issues are complex. The problem might be straightforward to describe, but what it is causing it is not easy to fix. 
-- Fixing one issue may introduce new problems in the package. 
-- Many packages depend on emmeans, so every change has to be weighed with that in mind. What if I break something?
-- We have a script to check for breaking dependencies. But be careful, if something is broken downstream, that will be our problem
+::: {.incremental}
+
+- Some issues are complex. The problem might be straightforward to describe, but what it is causing it is not easy to resolve ([example](https://github.com/rvlenth/emmeans/issues/540{preview-link="true"}).    
+- Fixing one issue may introduce new problems in the package ([example](https://github.com/rvlenth/emmeans/issues/571){preview-link="true"})      
+- Many packages depend on emmeans, so every change has to be weighed with that in mind. What if I break something?          
+- We have a script to check for breaking dependencies. But be careful, if something is broken downstream, that will be our problem. 
+
+:::
 
 ## Collaboration
 
-:::: {.columns}
-
-::: {.column width="50%"}
-
 ![*Russ is #14, I am #2*](https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExMXQ2bm02ZWQ1aHh4MXZwYWloOHY5OHIxM3p3aTJ6bG55c3B6OGF3aiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/tj16BKlu9sexbFjDl7/giphy.gif)
+
+
+## Collaboration 
+
+::: {.incremental}
+
+- We are collaborating two levels: package maintenance and everyday git issues      
+- Provide transition tools: guides to package structure, how to prepare for CRAN        
+- Clarify expectations: who is addressing what issue and how?         
+- Need clear two-way communication (we email each other frequently)        
+- Make changes as pull requests (PR's) and request code review           
+- Pave the way to easy "wins"    
+- Patience, kindness, and encouragement will go a long ways    
 :::
-
-::: {.column width="50%"}
-
-- We are collaborating two levels: package maintenance and everyday git issues
-- Provide transition tools: guides to package structure, how to prepare for CRAN
-- Clarify expectations: who is addressing what issue and how? 
-- Need clear two-way communication (we email each other frequently)
-- Make changes as pull requests (PR's) and request code review
-
-:::
-
-::::
-
-## Encouragement
-
-:::: {.columns}
-
-::: {.column width="50%"}
-
-![](https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2lrdzBxamg5aXk0OThzZmRmdjRpdGZrY2VsNmI5MzFseTh5cG91ZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/RtTrKqRYYxq118Vnsd/giphy.gif)
-
-:::
-
-::: {.column width="50%"}
-
-- Pave the way to easy "wins" 
-- Patience, kindness, and encouragement will go a long ways
-
-:::
-
-::::
 
 ## Can I Fill Russ' Shoes? {.smaller}
 
 :::: {.columns}
 
-::: {.column width="50%"}
 
-![](images/stj-basketball.jpg)
+::: {.column width="50%" .incremental}
+
+- I am learning the codebase, but logically, the original author will know it best. 
+- Most of the time, I will not be as timely in my response to filed issues.
+- I have to be timely responding to CRAN requests.
+- I do want to make a few changes: expand the number of unit tests, expand options for ordinal models, add continuous integration tools for standard checks (`R CMD CHECK`) and unit tests as a GitHub action.
+
 :::
 
 ::: {.column width="50%"}
 
-- I am learning the codebase. 
-- Most of the time, I will not be as timely in my response to filed issues
-- I have to be timely responding to CRAN requests
-- I do want to make a few changes: expand the number of unit tests, expand options for ordinal models, add continuous integration tools for standard checks (`R CMD CHECK`) and unit tests as a GitHub action
-- Refactoring (some) code is an aspiration, but at this point, I don't dare ("if it ain't broke, don't fix it")
-
-
+![](images/stj-basketball.jpg)
 :::
 
 ::::
@@ -448,38 +454,51 @@ Some requests:
 
 ## Final Thoughts: How to Do Library Handoff {.smaller}
 
-- Most of package maintenance is answering issues
-- Some programming skill is needed, but more to read code than write it
-- Considerable patience with git and GitHub is required alongside careful coordination with co-maintainers
-- AI: an agent (semi-autonomous) is an unwise choice at this time while Julia is still learning the code base 
-- AI: can help with understanding code base
+::: {.incremental}
+
+- Most of package maintenance is answering issues     
+- Some programming skill is needed, but more to read code than write it   
+- Considerable patience with git and GitHub is required alongside careful coordination with co-maintainers     
+- LLMs: can help with understanding codebase, but an agent (semi-autonomous) is an unwise choice at this time until there is more confidence with the codespace
 - Newer developers need nuturing and encourgement (or at least no discouragement) and some easy "wins" early on
+:::
 
-## Final Thoughts: How to Get Involved
+---------------------------------------------------
 
+![](https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExMm1sZG85b2NxYjB5dzcyN2YxcG9maWY0eDR2bWM2M3A4eTU1NndzMyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/8ZhtOfuU3ckLVPaOYo/giphy.gif)
+
+-----------------------------------------------------------
 
 :::: {.columns}
 
 ::: {.column width="60%"}
-- The open source software universe needs you!
-- There are many opportunities; ROpenSci runs a '[Help Wanted](https://devguide.ropensci.org/index.html)' page with requests for help in solving issues or looking for new maintainers
-- Popular packages are abandoned regularly when the original author no longer has time. Any package ever on CRAN is available in a public archive. 
+
+![[xkcd](https://xkcd.com/2347/)](images/dependency.png)
 
 :::
 
 ::: {.column width="40%"}
 
-![](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExaWFicjA2dHhuMHg3dmVrNzBtcXV6dzV4bGh4aXo5OGVtcmRhazMwbSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/yDAcc4z3GltlmkJNIu/giphy.gif)
+### Thoughts on Open Source Software
 :::
 
 ::::
 
+## How to Get Involved
 
--------------------------------------
+*The open source software universe needs you!*
 
-![](images/colors.png)
+- Some authors struggle to keep up with demand (see the 200+ issues currently open in [glmmTMB](https://github.com/glmmTMB/glmmTMB/issues))
+- Popular packages are abandoned regularly when the original author no longer has time. Any package ever on CRAN is available in a [public archive](https://cran.r-project.org/). 
+- There are many opportunities; ROpenSci runs a '[Help Wanted](https://devguide.ropensci.org/index.html)' page with requests for help in solving issues or looking for new maintainers
 
 
+
+::: {.r-stack .center background-gradient="linear-gradient(to bottom, #ffcd00, #FDDC5C)"}
+
+# Thank You
+
+:::
 
 ## Why SAS Type III Anova is wrong
 *(when covariates are involved)* 
